@@ -1,0 +1,27 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Environment variables
+.env
+
+# Node
+node_modules/
+dist/
+build/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Audio / model outputs
+*.mp3
+*.wav
+*.pt
+*.bin
+
+# Logs
+*.log

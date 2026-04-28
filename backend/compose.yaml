@@ -1,0 +1,24 @@
+services:
+  backend:
+    build: .
+    ports:
+      - "${APP_PORT:-8000}:8000"
+    environment:
+      - REDIS_HOST=${REDIS_HOST}
+      - REDIS_PORT=${REDIS_PORT}
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - SUPABASE_URL=${SUPABASE_URL}
+      - SUPABASE_KEY=${SUPABASE_KEY}
+  
+  frontend:
+    build: ../frontend
+    ports:
+      - "5173:5173"
+    command: npm run dev -- --host 0.0.0.0
+    depends_on:
+      - backend
+  
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"

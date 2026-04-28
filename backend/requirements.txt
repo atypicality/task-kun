@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+soundfile
+redis
+python-dotenv
+supabase
+qwen-tts
+google-genai
+elevenlabs
+numpy<2.0.0

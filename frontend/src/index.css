@@ -1,0 +1,303 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* ── Miku Teal Brand Palette ── */
+  --miku-teal: #39c5bb;
+  --miku-teal-hover: #2ba8a0;
+  --miku-teal-light: rgba(57, 197, 187, 0.12);
+  --miku-teal-mid: rgba(57, 197, 187, 0.25);
+
+  /* ── Light Mode ── */
+  --light-bg: #f2fafa;
+  --light-surface: #ffffff;
+  --light-surface-variant: #e8f6f5;
+  --light-text-primary: #0d1f1e;
+  --light-text-secondary: #5a7978;
+  --light-border: #c5e4e2;
+  --light-accent: #39c5bb;
+  --light-accent-hover: #2ba8a0;
+  --light-success: #10b981;
+  --light-warning: #f59e0b;
+  --light-error: #ef4444;
+
+  /* ── Dark Mode ── */
+  --dark-bg: #091520;
+  --dark-surface: #0e2030;
+  --dark-surface-variant: #152d3e;
+  --dark-text-primary: #e8f5f4;
+  --dark-text-secondary: #7bb3b0;
+  --dark-border: #1e3f50;
+  --dark-accent: #39c5bb;
+  --dark-accent-hover: #4dd4ca;
+  --dark-success: #10b981;
+  --dark-warning: #f59e0b;
+  --dark-error: #ef4444;
+
+  /* ── Defaults (Light) ── */
+  --bg: var(--light-bg);
+  --surface: var(--light-surface);
+  --surface-variant: var(--light-surface-variant);
+  --text-primary: var(--light-text-primary);
+  --text-secondary: var(--light-text-secondary);
+  --border: var(--light-border);
+  --accent: var(--light-accent);
+  --accent-hover: var(--light-accent-hover);
+  --success: var(--light-success);
+  --warning: var(--light-warning);
+  --error: var(--light-error);
+
+  /* ── Shadows ── */
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.07);
+  --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.10);
+  --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.15);
+  --shadow-accent: 0 4px 20px rgba(57, 197, 187, 0.25);
+
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-primary);
+  background-color: var(--bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+html[data-theme="dark"] {
+  --bg: var(--dark-bg);
+  --surface: var(--dark-surface);
+  --surface-variant: var(--dark-surface-variant);
+  --text-primary: var(--dark-text-primary);
+  --text-secondary: var(--dark-text-secondary);
+  --border: var(--dark-border);
+  --accent: var(--dark-accent);
+  --accent-hover: var(--dark-accent-hover);
+  --success: var(--dark-success);
+  --warning: var(--dark-warning);
+  --error: var(--dark-error);
+
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.6);
+}
+
+html, body, #root {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg);
+  color: var(--text-primary);
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+h1 { font-size: 2rem; }
+h2 { font-size: 1.5rem; }
+h3 { font-size: 1.25rem; }
+
+p {
+  margin: 0;
+  color: var(--text-secondary);
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--accent-hover);
+}
+
+/* Form Elements */
+button {
+  background-color: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  letter-spacing: 0.01em;
+}
+
+button:hover {
+  background-color: var(--accent-hover);
+  transform: translateY(-1px);
+}
+
+button:active {
+  transform: scale(0.98) translateY(0);
+}
+
+button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+}
+
+input, textarea, select {
+  background-color: var(--surface);
+  color: var(--text-primary);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+  font-family: inherit;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--miku-teal-light);
+}
+
+input::placeholder, textarea::placeholder {
+  color: var(--text-secondary);
+  opacity: 0.7;
+}
+
+/* Utility Classes */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.button-primary {
+  background-color: var(--accent);
+  color: white;
+}
+
+.button-primary:hover {
+  background-color: var(--accent-hover);
+}
+
+.button-secondary {
+  background-color: var(--surface);
+  color: var(--text-primary);
+  border: 1.5px solid var(--border);
+}
+
+.button-secondary:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.text-error { color: var(--error); }
+.text-success { color: var(--success); }
+.text-warning { color: var(--warning); }
+
+@media (max-width: 768px) {
+  :root { font-size: 15px; }
+  h1 { font-size: 1.75rem; }
+  h2 { font-size: 1.35rem; }
+}
+
+/* ─── Global fluid animations ─────────────────────────────────── */
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* Page-level shells fade in */
+.sk-shell  { animation: fadeIn 0.3s ease both; }
+.lp-page   { animation: fadeIn 0.3s ease both; }
+.home-page { animation: fadeIn 0.3s ease both; }
+
+/* Cards stagger on load */
+.sk-card {
+  animation: fadeUp 0.4s ease both;
+}
+
+/* Sidebar nav items slide in with stagger */
+.sk-navItem {
+  animation: fadeUp 0.35s ease both;
+}
+.sk-navItem:nth-child(1) { animation-delay: 0.05s; }
+.sk-navItem:nth-child(2) { animation-delay: 0.10s; }
+.sk-navItem:nth-child(3) { animation-delay: 0.15s; }
+.sk-navItem:nth-child(4) { animation-delay: 0.20s; }
+.sk-navItem:nth-child(5) { animation-delay: 0.25s; }
+
+/* Modal pop-in */
+.modal-card {
+  animation: scaleIn 0.25s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+/* Smooth page transitions on all interactive elements */
+a, button {
+  transition: opacity 0.15s ease, transform 0.15s ease, color 0.15s ease,
+              background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+/*SVG STUFF*/
+
+  .svg{
+    /* hex 888888*/
+    filter: invert(56%) sepia(1%) saturate(0%) hue-rotate(73deg) brightness(95%) contrast(88%);
+  }
+
+  .svg:hover, .svg-logo{
+
+    filter:if(
+      style(--accent: #facc15): invert(90%) sepia(27%) saturate(2250%) hue-rotate(344deg) brightness(99%) contrast(97%);
+      style(--accent: #7a2198): invert(18%) sepia(86%) saturate(2333%) hue-rotate(272deg) brightness(85%) contrast(98%);
+      style(--accent: #22c55e): invert(64%) sepia(16%) saturate(1964%) hue-rotate(89deg) brightness(93%) contrast(93%);
+      style(--accent: #4f46e5): invert(27%) sepia(82%) saturate(5485%) hue-rotate(241deg) brightness(94%) contrast(90%);
+      else: invert(67%) sepia(51%) saturate(520%) hue-rotate(127deg) brightness(91%) contrast(87%);
+
+  )
+    
+  }
+
+  .sidebarsvg{
+    width: 20px;
+    vertical-align:top;
+  }
+
+
+.sk-navItem:hover .sidebarsvg, .sk-navItem.sk-active .sidebarsvg, .svgalwayson{ 
+  filter:if(
+      style(--accent: #facc15): invert(90%) sepia(27%) saturate(2250%) hue-rotate(344deg) brightness(99%) contrast(97%);
+      style(--accent: #7a2198): invert(18%) sepia(86%) saturate(2333%) hue-rotate(272deg) brightness(85%) contrast(98%);
+      style(--accent: #22c55e): invert(64%) sepia(16%) saturate(1964%) hue-rotate(89deg) brightness(93%) contrast(93%);
+      style(--accent: #4f46e5): invert(27%) sepia(82%) saturate(5485%) hue-rotate(241deg) brightness(94%) contrast(90%);
+      else: invert(67%) sepia(51%) saturate(520%) hue-rotate(127deg) brightness(91%) contrast(87%);
+
+  )
+}
+
+/*END SVG STUFF*/

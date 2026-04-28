@@ -1,0 +1,243 @@
+/* ═══════════════════════════════════════════
+   task-kun.ai — Profile Page
+   ═══════════════════════════════════════════ */
+
+.profile-container {
+  min-height: 100vh;
+  background-color: var(--bg);
+  color: var(--text-primary);
+}
+
+.profile-header {
+  background-color: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.profile-title {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.profile-title span {
+  color: var(--accent);
+}
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.user-name {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.nav-link {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  padding: 7px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  color: var(--text-primary);
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all 0.15s ease;
+}
+
+.nav-link:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 6%, var(--surface));
+  transform: none;
+}
+
+.theme-toggle {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  border: 1.5px solid var(--border);
+  background: var(--surface);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  font-size: 1rem;
+  transition: all 0.15s ease;
+}
+
+.theme-toggle:hover {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 8%, var(--surface));
+  transform: none;
+}
+
+.logout-button {
+  border: 1.5px solid var(--border);
+  background: var(--surface);
+  color: var(--text-secondary);
+  padding: 7px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all 0.15s ease;
+}
+
+.logout-button:hover {
+  border-color: var(--error);
+  color: var(--error);
+  background: color-mix(in srgb, #ef4444 6%, var(--surface));
+  transform: none;
+}
+
+.profile-content {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem;
+}
+
+.profile-card {
+  background-color: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  overflow: hidden;
+}
+
+.profile-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), color-mix(in srgb, var(--accent) 50%, transparent));
+}
+
+.profile-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.profile-card-top h2 {
+  font-size: 1.2rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+}
+
+.profile-row {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: 1rem;
+  padding: 14px 0;
+  border-top: 1px solid var(--border);
+  align-items: center;
+}
+
+.label {
+  color: var(--text-secondary);
+  font-weight: 700;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.value {
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.primary-btn {
+  background-color: var(--accent);
+  border: none;
+  color: white;
+  padding: 9px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.85rem;
+  transition: all 0.2s ease;
+}
+
+.primary-btn:hover {
+  background-color: var(--accent-hover);
+  box-shadow: var(--shadow-accent);
+  transform: translateY(-1px);
+}
+
+.primary-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.secondary-btn {
+  background: var(--surface-variant);
+  border: 1.5px solid var(--border);
+  color: var(--text-primary);
+  padding: 9px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.85rem;
+  transition: all 0.15s ease;
+}
+
+.secondary-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 6%, var(--surface));
+  transform: none;
+}
+
+.edit-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.text-input {
+  padding: 9px 12px;
+  border-radius: 10px;
+  border: 1.5px solid var(--border);
+  background-color: var(--surface-variant);
+  color: var(--text-primary);
+  width: 100%;
+  font-family: inherit;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.text-input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 12%, transparent);
+  background: var(--surface);
+}

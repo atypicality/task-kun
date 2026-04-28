@@ -1,0 +1,476 @@
+/* ═══════════════════════════════════════════
+   task-kun.ai — Planner / Calendar
+   ═══════════════════════════════════════════ */
+
+.planner-shell {
+  background: var(--bg);
+  color: var(--text-primary);
+}
+
+/* shared brand tld color (also in Dashboard/Settings CSS) */
+.sk-brandTld { color: var(--accent); }
+
+.planner-content {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.planner-grid {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 18px;
+  align-items: start;
+}
+
+.planner-left { min-width: 0; }
+
+.planner-right {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Header */
+.planner-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: center;
+  margin: 4px 0 16px;
+}
+
+.planner-title {
+  margin: 0;
+  font-size: 2.75rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  color: var(--text-primary);
+}
+
+.planner-subtitle {
+  margin: 4px 0 0;
+  color: var(--text-secondary);
+  font-weight: 500;
+  font-size: 0.82rem;
+}
+
+.planner-controls {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.planner-btn {
+  border: 1.5px solid var(--border);
+  background: var(--surface);
+  color: var(--text-primary);
+  border-radius: 10px;
+  padding: 8px 14px;
+  font-weight: 600;
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.planner-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 6%, var(--surface));
+  transform: none;
+}
+
+.planner-iconBtn {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  border: 1.5px solid var(--border);
+  background: var(--surface);
+  color: var(--text-primary);
+  cursor: pointer;
+  font-size: 1.1rem;
+  line-height: 1;
+  display: grid;
+  place-items: center;
+  transition: all 0.15s ease;
+}
+
+.planner-iconBtn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: none;
+}
+
+.planner-viewToggle {
+  display: inline-flex;
+  border: 1.5px solid var(--border);
+  background: var(--surface);
+  border-radius: 12px;
+  padding: 4px;
+  gap: 3px;
+}
+
+.planner-pill {
+  border: none;
+  background: transparent;
+  padding: 7px 11px;
+  border-radius: 9px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  transition: all 0.15s ease;
+}
+
+.planner-pill:hover {
+  color: var(--text-primary);
+  transform: none;
+  background: var(--surface-variant);
+}
+
+.planner-pill.active {
+  background: var(--surface-variant);
+  color: var(--text-primary);
+  border: 1.5px solid var(--border);
+}
+
+/* Calendar grid */
+.planner-calendar {
+  padding: 16px;
+}
+
+.planner-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.planner-weekday {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.planner-cells {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+}
+
+.planner-cell {
+  text-align: left;
+  border: 1.5px solid var(--border);
+  background: var(--surface);
+  border-radius: 12px;
+  padding: 10px 8px;
+  min-height: 90px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  color: var(--text-primary);
+}
+
+.planner-cell:hover {
+  border-color: color-mix(in srgb, var(--accent) 50%, var(--border));
+  background: color-mix(in srgb, var(--accent) 4%, var(--surface));
+  transform: translateY(-1px);
+}
+
+.planner-cell.muted {
+  opacity: 0.4;
+}
+
+.planner-cell.selected {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 15%, transparent);
+  background: color-mix(in srgb, var(--accent) 6%, var(--surface));
+}
+
+.planner-dayNum {
+  font-weight: 800;
+  font-size: 0.88rem;
+  letter-spacing: -0.01em;
+}
+
+.planner-events {
+  margin-top: 6px;
+  display: grid;
+  gap: 4px;
+}
+
+.planner-chip {
+  display: inline-block;
+  width: fit-content;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 3px 7px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface-variant);
+  color: var(--text-primary);
+}
+
+.planner-chip.red {
+  border-color: color-mix(in srgb, #ef4444 35%, var(--border));
+  background: color-mix(in srgb, #ef4444 10%, var(--surface));
+  color: #ef4444;
+}
+
+.planner-chip.blue {
+  border-color: color-mix(in srgb, var(--accent) 35%, var(--border));
+  background: color-mix(in srgb, var(--accent) 10%, var(--surface));
+  color: var(--accent);
+}
+
+.planner-chip.gray {
+  background: var(--surface-variant);
+}
+
+.planner-more {
+  font-size: 0.68rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+/* Right rail */
+.planner-panel { padding: 16px; }
+
+.planner-panelHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.planner-panelTitle {
+  font-weight: 800;
+  font-size: 0.88rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.planner-dotIcon {
+  display: inline-grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 7px;
+  background: color-mix(in srgb, var(--accent) 12%, var(--surface));
+  color: var(--accent);
+  font-size: 11px;
+  line-height: 1;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.planner-linkBtn {
+  border: none;
+  background: transparent;
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 0.78rem;
+  cursor: pointer;
+  transition: color 0.15s ease;
+  padding: 0;
+}
+
+.planner-linkBtn:hover {
+  color: var(--accent-hover);
+  background: none;
+  transform: none;
+}
+
+.planner-emptyRight {
+  color: var(--text-secondary);
+  font-weight: 500;
+  font-size: 0.85rem;
+  padding: 8px 2px 2px;
+}
+
+/* Tracker cards */
+.planner-trackerCard {
+  background: var(--bg);
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  padding: 14px;
+  margin-bottom: 10px;
+  transition: all 0.15s ease;
+}
+
+.planner-trackerCard:hover {
+  border-color: var(--accent);
+}
+
+.tracker-topRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: center;
+}
+
+.tracker-title {
+  font-weight: 700;
+  font-size: 0.88rem;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.tracker-pill {
+  border: 1.5px solid var(--border);
+  background: var(--surface-variant);
+  color: var(--text-secondary);
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.tracker-metaRow {
+  margin-top: 7px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-secondary);
+  font-weight: 500;
+  font-size: 0.78rem;
+}
+
+.tracker-metaRow span:first-child {
+  display: inline-grid;
+  place-items: center;
+  width: 18px;
+  font-size: 0.82rem;
+}
+
+.tracker-bar {
+  margin-top: 10px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--surface-variant);
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.tracker-barFill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), color-mix(in srgb, var(--accent) 70%, #86cecb));
+  border-radius: 999px;
+  transition: width 0.4s ease;
+}
+
+/* Reminder cards */
+.planner-reminderCard {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--bg);
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  padding: 12px 14px;
+  margin-bottom: 10px;
+  transition: all 0.15s ease;
+}
+
+.planner-reminderCard:hover {
+  border-color: var(--accent);
+}
+
+.rem-iconWrap {
+  width: 38px;
+  height: 38px;
+  border-radius: 11px;
+  background: color-mix(in srgb, var(--accent) 10%, var(--surface));
+  display: grid;
+  place-items: center;
+  font-size: 1rem;
+  line-height: 1;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.rem-title {
+  font-weight: 700;
+  font-size: 0.88rem;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.rem-sub {
+  margin-top: 2px;
+  color: var(--text-secondary);
+  font-weight: 500;
+  font-size: 0.75rem;
+}
+
+/* AI Strategy panel */
+.planner-ai {
+  padding: 16px;
+  background: color-mix(in srgb, var(--accent) 8%, var(--surface));
+  border-color: color-mix(in srgb, var(--accent) 25%, var(--border));
+  position: relative;
+  overflow: hidden;
+}
+
+.planner-ai::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), color-mix(in srgb, var(--accent) 50%, transparent));
+}
+
+.planner-aiTitle {
+  font-weight: 800;
+  margin-bottom: 8px;
+  font-size: 0.88rem;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.planner-aiText {
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+  line-height: 1.5;
+  margin-bottom: 14px;
+  font-weight: 500;
+}
+
+.planner-aiBtn {
+  width: 100%;
+  border: none;
+  background: var(--accent);
+  color: white;
+  padding: 10px 14px;
+  border-radius: 11px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.planner-aiBtn:hover {
+  background: var(--accent-hover);
+  box-shadow: var(--shadow-accent);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 1100px) {
+  .planner-grid { grid-template-columns: 1fr; }
+}

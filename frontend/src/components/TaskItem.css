@@ -1,0 +1,178 @@
+/* ═══════════════════════════════════════════
+   task-kun.ai — TaskItem Component
+   ═══════════════════════════════════════════ */
+
+.task-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 18px;
+  background-color: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  transition: all 0.2s ease;
+  cursor: default;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-xs);
+}
+
+.task-item:hover {
+  border-color: var(--accent);
+  box-shadow: var(--shadow-sm);
+  transform: translateY(-1px);
+}
+
+.task-item.completed {
+  opacity: 0.6;
+  background-color: var(--surface-variant);
+}
+
+.task-item.completed .task-title {
+  text-decoration: line-through;
+  color: var(--text-secondary);
+}
+
+.task-checkbox {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 1px;
+}
+
+.checkbox {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  appearance: none;
+  border: 2px solid var(--border);
+  border-radius: 6px;
+  background-color: var(--surface);
+  transition: all 0.2s ease;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+.checkbox:hover {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 8%, var(--surface));
+}
+
+.checkbox:checked {
+  background-color: var(--accent);
+  border-color: var(--accent);
+}
+
+.checkbox:checked::after {
+  content: '✓';
+  color: white;
+  font-size: 11px;
+  font-weight: 900;
+}
+
+.task-content {
+  flex: 1;
+  overflow: hidden;
+  min-width: 0;
+}
+
+.task-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+  flex-wrap: wrap;
+}
+
+.task-title {
+  margin: 0;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  word-break: break-word;
+  letter-spacing: -0.01em;
+}
+
+.priority-badge {
+  font-size: 0.68rem;
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: white;
+  background-color: var(--success);
+  flex-shrink: 0;
+}
+
+.task-description {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+  line-height: 1.5;
+  word-break: break-word;
+  font-weight: 400;
+}
+
+.task-actions {
+  display: flex;
+  gap: 6px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  flex-shrink: 0;
+}
+
+.task-item:hover .task-actions {
+  opacity: 1;
+}
+
+.action-btn {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  padding: 0;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+}
+
+.edit-btn {
+  color: var(--accent);
+  border-color: color-mix(in srgb, var(--accent) 30%, var(--border));
+}
+
+.edit-btn:hover {
+  background-color: color-mix(in srgb, var(--accent) 10%, var(--surface));
+  border-color: var(--accent);
+  transform: none;
+}
+
+.delete-btn {
+  color: var(--error);
+  border-color: color-mix(in srgb, #ef4444 30%, var(--border));
+}
+
+.delete-btn:hover {
+  background-color: color-mix(in srgb, #ef4444 10%, var(--surface));
+  border-color: var(--error);
+  transform: none;
+}
+
+@media (max-width: 640px) {
+  .task-item {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .task-actions {
+    width: 100%;
+    justify-content: flex-end;
+    opacity: 1;
+  }
+}

@@ -1,0 +1,148 @@
+/* ─── Task Charts ──────────────────────────────────────── */
+.task-charts {
+  display: grid;
+  grid-template-columns: 160px 200px 1fr;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.chart-card {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 18px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+  animation: fadeUp 0.5s ease both;
+}
+
+.chart-card:nth-child(2) { animation-delay: 0.07s; }
+.chart-card:nth-child(3) { animation-delay: 0.14s; }
+
+.chart-card:hover {
+  border-color: color-mix(in srgb, var(--accent) 40%, var(--border));
+  box-shadow: var(--shadow-sm);
+}
+
+.chart-card-wide {
+  grid-column: span 1;
+}
+
+.chart-card-title {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  align-self: flex-start;
+  width: 100%;
+}
+
+.chart-card-meta {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  display: flex;
+  gap: 12px;
+  width: 100%;
+}
+
+.chart-card-meta.center {
+  justify-content: center;
+}
+
+.chart-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  margin-right: 4px;
+  vertical-align: middle;
+}
+
+.chart-dot.teal { background: var(--accent); }
+.chart-dot.gray { background: var(--border); }
+
+/* Donut */
+.chart-donut-svg {
+  width: 120px;
+  height: 120px;
+}
+
+.chart-donut-fill {
+  transition: stroke-dashoffset 0.8s cubic-bezier(0.34, 1.2, 0.64, 1);
+}
+
+.chart-donut-pct {
+  font-size: 22px;
+  font-weight: 900;
+  fill: var(--text-primary);
+  font-family: inherit;
+  letter-spacing: -0.03em;
+}
+
+.chart-donut-sub {
+  font-size: 9px;
+  font-weight: 700;
+  fill: var(--text-secondary);
+  font-family: inherit;
+  letter-spacing: 0.08em;
+}
+
+/* Bar chart */
+.chart-bars-svg {
+  width: 100%;
+  max-width: 180px;
+}
+
+.chart-bar-fill {
+  transition: height 0.6s cubic-bezier(0.34, 1.2, 0.64, 1),
+              y 0.6s cubic-bezier(0.34, 1.2, 0.64, 1);
+}
+
+.chart-bar-val {
+  font-size: 10px;
+  font-weight: 800;
+  fill: var(--text-primary);
+  font-family: inherit;
+}
+
+.chart-bar-label {
+  font-size: 8px;
+  font-weight: 700;
+  font-family: inherit;
+  letter-spacing: 0.05em;
+}
+
+/* Sparkline */
+.chart-spark-svg {
+  width: 100%;
+}
+
+.chart-spark-label {
+  font-size: 9px;
+  font-weight: 600;
+  fill: var(--text-secondary);
+  font-family: inherit;
+}
+
+@media (max-width: 900px) {
+  .task-charts {
+    grid-template-columns: 1fr 1fr;
+  }
+  .chart-card-wide {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 560px) {
+  .task-charts {
+    grid-template-columns: 1fr;
+  }
+  .chart-card-wide {
+    grid-column: span 1;
+  }
+}
