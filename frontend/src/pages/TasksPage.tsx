@@ -8,12 +8,7 @@ import * as taskServiceAPI from "../services/taskService";
 import Sun from '../assets/taki-sun.svg';
 import Moon from '../assets/taki-moon.svg';
 import Logout from '../assets/taki-logout.svg';
-import Cog from '../assets/taki-cog.svg';
 import Person from '../assets/taki-person.svg';
-import Pencil from '../assets/taki-pencil.svg';
-import Taskbox from '../assets/taki-taskbox.svg';
-import Stopwatch from '../assets/taki-stopwatch.svg';
-import Fire from '../assets/taki-fire.svg';
 import "./TasksPage.css";
 
 type Priority = "low" | "medium" | "high";
@@ -331,17 +326,12 @@ export function TasksPage() {
           <section className="tasks-list">
             {loading ? (
               <div className="tasks-empty sk-card">
-                <div className="tasks-emptySVG">
-                  <img className="svg svgalwayson" src={Cog} alt="" />
-                </div>
+                <div className="tasks-emptyIcon">⏳</div>
                 <div className="tasks-emptyTitle">Loading tasks...</div>
               </div>
             ) : filteredSortedTasks.length === 0 ? (
               <div className="tasks-empty sk-card">
-                <div className="tasks-emptySVG">
-                  {filterMode === "completed" ? <img className="svg svgalwayson" src={Taskbox} alt="" /> 
-                  : <img className="svg svgalwayson" src={Pencil} alt="" />
-                  }</div>
+                <div className="tasks-emptyIcon">{filterMode === "completed" ? "🎉" : "📝"}</div>
                 <div className="tasks-emptyTitle">
                   {filterMode === "completed" ? "No completed tasks yet" : searchQuery ? "No matching tasks" : "No tasks here"}
                 </div>
@@ -368,9 +358,7 @@ export function TasksPage() {
                       {t.description && <div className="tasks-rowDesc">{t.description}</div>}
                       <div className="tasks-rowMeta">
                         <span className={`tasks-dueChip ${overdue ? "overdue" : t.dueDate === todayIso ? "today" : ""}`}>
-                          {overdue ? <img className="svg sidebarsvg svgred" src={Fire} alt="" /> : 
-                          <img className="svg sidebarsvg svgalwayson" src={Stopwatch} alt="" />
-                          }{formatDueLabel(t.dueDate, t.dueTime)}
+                          {overdue ? "⚠ " : "⏰ "}{formatDueLabel(t.dueDate, t.dueTime)}
                         </span>
                       </div>
                     </div>
@@ -378,12 +366,8 @@ export function TasksPage() {
                     <div className={`tasks-priority ${t.priority}`}>{t.priority}</div>
 
                     <div className="tasks-actions">
-                      <button className="tasks-action" onClick={() => handleEditTask(t)} title="Edit">
-                        <img className="svg sidebarsvg svgalwayson" src={Pencil} alt="" />
-                      </button>
-                      <button className="tasks-action danger" onClick={() => handleDeleteTask(t.id)} title="Delete">
-                        <img className="svg sidebarsvg svgalwayson" src={Logout} alt="" />
-                      </button>
+                      <button className="tasks-action" onClick={() => handleEditTask(t)} title="Edit">✏️</button>
+                      <button className="tasks-action danger" onClick={() => handleDeleteTask(t.id)} title="Delete">🗑️</button>
                     </div>
                   </div>
                 );
