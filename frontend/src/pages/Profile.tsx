@@ -2,65 +2,44 @@ import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { useTheme } from "../context/ThemeContext";
+import Sun from '../assets/taki-sun.svg';
+import Moon from '../assets/taki-moon.svg';
 import "./Profile.css";
 
 export function Profile() {
   const navigate = useNavigate();
-  const { user, logout, saveProfile } = useAuth();
+  const { user, logout, updateUser } = useAuth();
   const { theme, toggleTheme } = useTheme();
 
   const [isEditing, setIsEditing] = useState(false);
-  const [saving, setSaving] = useState(false);
-  const [error, setError] = useState<string | null>(null);
 
-  // Editable fields — email and password are not changeable here
-  const initialDisplayName = user?.display_name ?? "";
-  const initialUniversity = user?.university ?? "";
-  const initialMajor = user?.major ?? "";
+  const initialName = user?.name ?? "";
+  const initialEmail = user?.email ?? "";
 
-  const [displayName, setDisplayName] = useState(initialDisplayName);
-  const [university, setUniversity] = useState(initialUniversity);
-  const [major, setMajor] = useState(initialMajor);
+  const [name, setName] = useState(initialName);
+  const [email, setEmail] = useState(initialEmail);
 
   const hasChanges = useMemo(() => {
-    return (
-      displayName.trim() !== initialDisplayName ||
-      university.trim() !== initialUniversity ||
-      major.trim() !== initialMajor
-    );
-  }, [displayName, university, major, initialDisplayName, initialUniversity, initialMajor]);
+    return name.trim() !== initialName || email.trim() !== initialEmail;
+  }, [name, email, initialName, initialEmail]);
 
   const handleLogout = () => {
     logout();
     navigate("/");
   };
 
-  const handleSave = async () => {
-    if (!displayName.trim()) {
-      setError("Display name cannot be empty.");
+  const handleSave = () => {
+    if (!name.trim() || !email.trim()) {
+      alert("Name and email cannot be empty.");
       return;
     }
-    setError(null);
-    setSaving(true);
-    try {
-      await saveProfile({
-        display_name: displayName.trim(),
-        university: university.trim() || undefined,
-        major: major.trim() || undefined,
-      });
-      setIsEditing(false);
-    } catch (e: any) {
-      setError(e.message || "Failed to save profile.");
-    } finally {
-      setSaving(false);
-    }
+    updateUser({ name: name.trim(), email: email.trim() });
+    setIsEditing(false);
   };
 
   const handleCancel = () => {
-    setDisplayName(initialDisplayName);
-    setUniversity(initialUniversity);
-    setMajor(initialMajor);
-    setError(null);
+    setName(initialName);
+    setEmail(initialEmail);
     setIsEditing(false);
   };
 
@@ -75,14 +54,17 @@ export function Profile() {
               Dashboard
             </button>
 
-            <span className="user-name">Hello, {user?.display_name}!</span>
+            <span className="user-name">Hello, {user?.name}!</span>
 
             <button
               className="theme-toggle"
               onClick={toggleTheme}
               title={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
             >
-              {theme === "light" ? "🌙" : "☀️"}
+              {theme === "light" ? 
+              <img className="svg sidebarsvg svgalwayson" src={Moon} alt="" />
+               :
+              <img className="svg sidebarsvg svgalwayson" src={Sun} alt="" />}
             </button>
 
             <button className="logout-button" onClick={handleLogout}>
@@ -106,70 +88,47 @@ export function Profile() {
                 <button
                   className="primary-btn"
                   onClick={handleSave}
-                  disabled={!hasChanges || saving}
+                  disabled={!hasChanges}
                   title={!hasChanges ? "No changes to save" : "Save changes"}
                 >
-                  {saving ? "Saving…" : "Save"}
+                  Save
                 </button>
-                <button className="secondary-btn" onClick={handleCancel} disabled={saving}>
+                <button className="secondary-btn" onClick={handleCancel}>
                   Cancel
                 </button>
               </div>
             )}
           </div>
 
-          {error && <p className="error-message">{error}</p>}
-
           <div className="profile-row">
-            <span className="label">Display Name</span>
+            <span className="label">Name</span>
             {!isEditing ? (
-              <span className="value">{user?.display_name}</span>
+              <span className="value">{user?.name}</span>
             ) : (
               <input
                 className="text-input"
-                value={displayName}
-                onChange={(e) => setDisplayName(e.target.value)}
+                value={name}
+                onChange={(e) => setName(e.target.value)}
               />
             )}
           </div>
 
-          {/* Email is read-only — change via account security settings */}
           <div className="profile-row">
             <span className="label">Email</span>
-            <span className="value">{user?.email}</span>
-          </div>
-
-          <div className="profile-row">
-            <span className="label">University</span>
             {!isEditing ? (
-              <span className="value">{user?.university || "—"}</span>
+              <span className="value">{user?.email}</span>
             ) : (
               <input
                 className="text-input"
-                value={university}
-                onChange={(e) => setUniversity(e.target.value)}
-                placeholder="e.g. MIT"
-              />
-            )}
-          </div>
-
-          <div className="profile-row">
-            <span className="label">Major</span>
-            {!isEditing ? (
-              <span className="value">{user?.major || "—"}</span>
-            ) : (
-              <input
-                className="text-input"
-                value={major}
-                onChange={(e) => setMajor(e.target.value)}
-                placeholder="e.g. Computer Science"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             )}
           </div>
 
           <div className="profile-row">
             <span className="label">User ID</span>
-            <span className="value">{user?.user_id}</span>
+            <span className="value">{user?.id}</span>
           </div>
         </div>
       </main>
