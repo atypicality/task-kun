@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import loginMascot from "../assets/login-mascot.png";
 import logoB from "../assets/taki-logo-full.svg";
-import Computer from '../assets/taki-computer.svg';
 import "./LoginPage.css";
 
 export function LoginPage() {
@@ -74,13 +73,13 @@ export function LoginPage() {
       {/* Top bar */}
       <header className="lp-topbar">
         <div className="lp-brand" onClick={() => navigate("/")}>
-          <div className="lp-brandMark" />
-          <div className="lp-brandText">Task-kun AI</div>
+          {/*<div className="lp-brandMark" />
+          <div className="lp-brandText">Task-kun AI</div>*/}
+          <img className="lp-logo svg-logo" src={logoB} alt="" />
         </div>
 
         <button className="lp-langBtn" type="button" title="Language">
-          <img className="svg sidebarsvg svgalwayson" src={Computer} alt="" />
-          <span>English</span>
+          🌐 <span>English</span>
         </button>
       </header>
 
