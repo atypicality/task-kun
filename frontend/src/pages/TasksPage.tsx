@@ -8,10 +8,7 @@ import * as taskServiceAPI from "../services/taskService";
 import Sun from '../assets/taki-sun.svg';
 import Moon from '../assets/taki-moon.svg';
 import Logout from '../assets/taki-logout.svg';
-import Bell from '../assets/taki-bell.svg';
 import Person from '../assets/taki-person.svg';
-import Pencil from '../assets/taki-pencil.svg';
-import Computer from '../assets/taki-computer.svg';
 import "./TasksPage.css";
 
 type Priority = "low" | "medium" | "high";
