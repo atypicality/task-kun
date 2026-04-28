@@ -7,7 +7,7 @@ import { Sidebar } from "../components/Sidebar";
 import type { Task } from "../services/plannerService";
 import "./AIPage.css";
  
-const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:8000";
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "https://task-kun-s9rt.onrender.com";
  
 interface Message {
   id: string;

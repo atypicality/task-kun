@@ -2,7 +2,8 @@ export async function generateVoice(
   text: string,
   voice: "default" | "miku" = "default"
 ): Promise<string> {
-  const response = await fetch("http://127.0.0.1:8000/generate-voice", {
+  const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "https://task-kun-s9rt.onrender.com";
+  const response = await fetch(`${BACKEND_URL}/generate-voice`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

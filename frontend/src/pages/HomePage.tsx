@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import './HomePage.css';
 
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'https://task-kun-s9rt.onrender.com';
+
 /* ── Typewriter hook ─────────────────────────────── */
 const HERO_WORDS = ["goals.", "future.", "tasks.", "potential.", "success.", "dreams."];
 
@@ -77,7 +79,7 @@ function AskMiku() {
     setError(false);
     setReply(null);
     try {
-      const res = await fetch("http://127.0.0.1:8000/generate-gemini", {
+      const res = await fetch(`${BACKEND_URL}/generate-gemini`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ text: `${MIKU_SYSTEM}\n\nStudent: ${q}` }),

@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import './AddTask.css';
 
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'https://task-kun-s9rt.onrender.com';
+
 async function generateTaskWithAI(): Promise<{ title: string; description: string; priority: 'low' | 'medium' | 'high'; daysFromNow: number } | null> {
   const prompt = `You are helping a student use a task manager. Generate one realistic, specific student task. Return ONLY valid JSON with these exact fields:
 {
@@ -12,7 +14,7 @@ async function generateTaskWithAI(): Promise<{ title: string; description: strin
 Be creative and varied — could be any subject, assignment type, or student activity.`;
 
   try {
-    const res = await fetch('http://127.0.0.1:8000/generate-gemini', {
+    const res = await fetch(`${BACKEND_URL}/generate-gemini`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ text: prompt }),

@@ -19,7 +19,7 @@ export type Task = {
 
 export type DueTask = Task & { deadline: string; time: string };
 
-const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:8000";
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "https://task-kun-s9rt.onrender.com";
 
 // ─── Date helpers ─────────────────────────────────────────────────────────────
 
