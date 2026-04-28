@@ -2,6 +2,8 @@ import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { useTheme } from "../context/ThemeContext";
+import Sun from '../assets/taki-sun.svg';
+import Moon from '../assets/taki-moon.svg';
 import "./Profile.css";
 
 export function Profile() {
@@ -76,15 +78,16 @@ export function Profile() {
             </button>
 
             <span className="user-name">Hello, {user?.display_name}!</span>
-
-            <button
-              className="theme-toggle"
-              onClick={toggleTheme}
-              title={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
-            >
-              {theme === "light" ? "🌙" : "☀️"}
-            </button>
-
+              <button
+                className="theme-toggle"
+                onClick={toggleTheme}
+                title={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
+              >
+              {theme === "light" ? 
+              <img className="svg sidebarsvg svgalwayson" src={Moon} alt="" />
+               :
+              <img className="svg sidebarsvg svgalwayson" src={Sun} alt="" />}            
+              </button>
             <button className="logout-button" onClick={handleLogout}>
               Sign Out
             </button>

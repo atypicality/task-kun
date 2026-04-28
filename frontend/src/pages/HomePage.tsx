@@ -1,6 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import Calendar from '../assets/taki-sun.svg';
+import Moon from '../assets/taki-moon.svg';
+import Funnel from '../assets/taki-bell.svg';
+import Taskbox from '../assets/taki-person.svg';
+import Speaker from '../assets/taki-logout.svg';
+import Sparkle from '../assets/taki-logout.svg';
 import './HomePage.css';
 
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'https://task-kun-s9rt.onrender.com';
@@ -70,7 +76,7 @@ function AskMiku() {
     "How do I stop procrastinating?",
     "Help me prioritize my tasks!",
     "What's the best study method?",
-    "I have 3 exams this week 😱",
+    "I have 3 exams this week!!!",
   ];
 
   const ask = async (q: string) => {
@@ -115,7 +121,9 @@ function AskMiku() {
 
         <div className="miku-card">
           <div className="miku-avatar-row">
-            <div className="miku-avatar">🎵</div>
+            <div className="miku-avatar">
+              <img className="svg sidebarsvg svgalwayson" src={Speaker} alt="" /> 
+            </div>
             <div className="miku-avatar-name">Miku<span className="miku-tld">.ai</span></div>
             <div className="miku-online"><span className="miku-online-dot" />Online</div>
           </div>
@@ -245,7 +253,9 @@ export function HomePage() {
                 <div className="hero-stat-label">Smart Sorting</div>
               </div>
               <div onClick={() => scrollTo('ask-miku')} className="hero-stat-clickable">
-                <div className="hero-stat-value">🎵</div>
+                <div className="hero-stat-value">
+                  <img className="svg sidebarsvg svgalwayson" src={Speaker} alt="" />
+                </div>
                 <div className="hero-stat-label">Voice Reminders</div>
               </div>
               <div>
@@ -315,12 +325,12 @@ export function HomePage() {
 
           <div className="features-grid">
             {[
-              { icon: "🤖", title: "AI Task Intelligence", desc: "Let the AI recommend what to tackle next based on deadlines and priority scores." },
-              { icon: "🎵", title: "Voice Reminders", desc: "Hatsune Miku reminds you of upcoming deadlines with cheerful voice notifications." },
-              { icon: "📅", title: "Visual Calendar", desc: "See all your tasks at a glance on a beautiful monthly calendar with smart chips." },
-              { icon: "⚡", title: "Priority Sorting", desc: "Automatically rank tasks by deadline, priority, or an AI-balanced combination." },
-              { icon: "🌙", title: "Light & Dark Themes", desc: "Switch between light and dark mode with full accent color customization." },
-              { icon: "💾", title: "Always in Sync", desc: "Tasks are saved instantly. Never lose progress, no matter where you left off." },
+              { icon: <img className="svg sidebarsvg svgalwayson" src={Sparkle} alt="" />, title: "AI Task Intelligence", desc: "Let the AI recommend what to tackle next based on deadlines and priority scores." },
+              { icon: <img className="svg sidebarsvg svgalwayson" src={Speaker} alt="" />, title: "Voice Reminders", desc: "Hatsune Miku reminds you of upcoming deadlines with cheerful voice notifications." },
+              { icon: <img className="svg sidebarsvg svgalwayson" src={Calendar} alt="" />, title: "Visual Calendar", desc: "See all your tasks at a glance on a beautiful monthly calendar with smart chips." },
+              { icon: <img className="svg sidebarsvg svgalwayson" src={Funnel} alt="" />, title: "Priority Sorting", desc: "Automatically rank tasks by deadline, priority, or an AI-balanced combination." },
+              { icon: <img className="svg sidebarsvg svgalwayson" src={Moon} alt="" />, title: "Light & Dark Themes", desc: "Switch between light and dark mode with full accent color customization." },
+              { icon: <img className="svg sidebarsvg svgalwayson" src={Taskbox} alt="" />, title: "Always in Sync", desc: "Tasks are saved instantly. Never lose progress, no matter where you left off." },
             ].map((f, i) => (
               <div key={f.title} className="feature-card" style={{ animationDelay: `${i * 0.07}s` }}>
                 <div className="feature-icon-wrap">{f.icon}</div>

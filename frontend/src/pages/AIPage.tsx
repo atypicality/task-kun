@@ -5,6 +5,11 @@ import { useTheme } from "../context/ThemeContext";
 import { generateVoice } from "../services/aiService";
 import { Sidebar } from "../components/Sidebar";
 import type { Task } from "../services/plannerService";
+import Sun from "../assets/taki-sun.svg";
+import Moon from "../assets/taki-moon.svg";
+import Bell from "../assets/taki-bell.svg";
+import Person from "../assets/taki-person.svg";
+import Logout from "../assets/taki-logout.svg";
 import "./AIPage.css";
  
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "https://task-kun-s9rt.onrender.com";
@@ -165,9 +170,21 @@ export function AIPage() {
           </div>
           <div className="sk-searchWrap" />
           <div className="sk-topRight">
-            <button className="sk-iconBtn" onClick={toggleTheme} title="Toggle theme">{theme === "light" ? "🌙" : "☀️"}</button>
-            <button className="sk-iconBtn" onClick={() => navigate("/profile")} title="Profile">👤</button>
-            <button className="sk-iconBtn" onClick={handleLogout} title="Sign out">⎋</button>
+            <button className="sk-iconBtn" title="Toggle theme" onClick={toggleTheme}>
+              {theme === "light" ? 
+              <img className="svg sidebarsvg svgalwayson" src={Moon} alt="" />
+               :
+              <img className="svg sidebarsvg svgalwayson" src={Sun} alt="" />}
+            </button>
+            <button className="sk-iconBtn" title="Notifications">
+              <img className="svg sidebarsvg svgalwayson" src={Bell} alt="" />
+            </button>
+            <button className="sk-iconBtn" title="Profile" onClick={() => navigate("/profile")}>
+              <img className="svg sidebarsvg svgalwayson" src={Person} alt="" />
+            </button>
+            <button className="sk-iconBtn" title="Sign out" onClick={handleLogout}>
+              <img className="svg sidebarsvg svgalwayson" src={Logout} alt="" />
+            </button>
           </div>
         </header>
  
@@ -270,7 +287,7 @@ export function AIPage() {
               </div>
  
               <div className="ai-contextCard">
-                <div className="ai-contextTitle">💡 What I can do</div>
+                <div className="ai-contextTitle">What I can do</div>
                 <div className="ai-contextList">
                   <div className="ai-contextItem">Break tasks into steps</div>
                   <div className="ai-contextItem">Prioritize your workload</div>

@@ -347,7 +347,10 @@
   gap: 10px;
 }
 
+svgred{filter:invert(18%) sepia(97%) saturate(5885%) hue-rotate(357deg) brightness(98%) contrast(119%);}
+
 .tasks-emptyIcon { font-size: 2.5rem; }
+.tasks-emptySVG {width: 2.5rem; margin: auto; margin-bottom: 12px;}
 .tasks-emptyTitle { font-weight: 800; font-size: 1.1rem; color: var(--text-primary); }
 .tasks-emptySub { font-size: 0.88rem; color: var(--text-secondary); font-weight: 500; }
 
