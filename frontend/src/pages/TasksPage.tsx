@@ -11,7 +11,7 @@ import Logout from '../assets/taki-logout.svg';
 import Cog from '../assets/taki-cog.svg';
 import Person from '../assets/taki-person.svg';
 import Pencil from '../assets/taki-pencil.svg';
-import TaskBox from '../assets/taki-taskbox.svg';
+import Taskbox from '../assets/taki-taskbox.svg';
 import Stopwatch from '../assets/taki-stopwatch.svg';
 import Fire from '../assets/taki-fire.svg'; 
 import "./TasksPage.css";
